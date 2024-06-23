@@ -7,7 +7,7 @@ def ip_to_binary(ip):
     ip_list_bin = []
     res_lst = []
 
-    print(ip)
+    # print(ip)
     ip_list = ip.split(".")
 
     for oct in ip_list:
@@ -24,11 +24,11 @@ def ip_to_binary(ip):
         else:
             res_lst.append(i)
 
-    print(res_lst)
+    return res_lst
 
 
 def mask_to_binary(mask):
-    print(mask)
+    # print(mask)
     mask_list = mask.split(".")
     mask_list_binary = []
     res_mask_list_binary = []
@@ -41,8 +41,17 @@ def mask_to_binary(mask):
         while len(oct) < 8:
             oct = "0" + oct
         res_mask_list_binary.append(oct)
-    print(res_mask_list_binary)
+    return res_mask_list_binary
+
+
+ip_list = ip_to_binary(ip)
+mask_list = mask_to_binary(mask)
+
+
+def apply_mask_to_ip(ip, mask):
+    print(ip)
+    print(mask)
+
+apply_mask_to_ip(ip_list, mask_list)
 
 print()
-ip_to_binary(ip)
-mask_to_binary(mask)
