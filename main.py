@@ -55,7 +55,7 @@ mask_list = mask_to_binary(mask)
 def apply_mask_to_ip(ip, mask):
     print(ip)
     print(mask)
-    counter_bit = 0
+    counter_bit_mask = 0
     ip_bin_str = ""
     network_ip = ""
     host_ip = ""
@@ -64,14 +64,22 @@ def apply_mask_to_ip(ip, mask):
         for bit_mask in oct_mask:
             # print(bit_mask)
             if bit_mask == "1":
-                counter_bit += 1
-    print(counter_bit)
+                counter_bit_mask += 1
+    # print(counter_bit_mask)
 
     for oct_ip in ip:
         for bit_ip in oct_ip:
             ip_bin_str += bit_ip
 
-    print(ip_bin_str)
+
+    print()
+    print(f"IP в строке - {ip_bin_str}")
+    print(f"Длинна битов маски {counter_bit_mask}")
+    network_adress = ip_bin_str[:counter_bit_mask]
+    print(f"Network Adress - {network_adress}")
+    host_adress = ip_bin_str[counter_bit_mask:len(ip_bin_str)]
+    print(f"Host adress - {host_adress}")
+
 
      
 
