@@ -75,14 +75,21 @@ def apply_mask_to_ip(ip, mask):
     print()
     print(f"IP в строке - {ip_bin_str}")
     print(f"Длинна битов маски {counter_bit_mask}")
-    network_adress = ip_bin_str[:counter_bit_mask]
-    print(f"Network Adress - {network_adress}")
+    network_adress_part = ip_bin_str[:counter_bit_mask]
+    print(f"Network Adress - {network_adress_part}")
     host_adress = ip_bin_str[counter_bit_mask:len(ip_bin_str)]
     print(f"Host adress - {host_adress}")
 
+    full_network_adress_bin = network_adress_part
+    for i in range(0, 32 - len(network_adress_part)):
+        full_network_adress_bin += "0"
 
-     
+    print(f"Full NA - {full_network_adress_bin}")
+    full_network_adress_dec = []
 
+    for i in full_network_adress_bin:
+        print(i, end="")
+        
 
 
 
