@@ -85,13 +85,20 @@ def apply_mask_to_ip(ip, mask):
         full_network_adress_bin += "0"
 
     print(f"Full NA - {full_network_adress_bin}")
-    full_network_adress_dec = []
+    full_network_adress_bin_list = []
+    counter = 0
+    tmp = ""
 
     for i in full_network_adress_bin:
-        print(i, end="")
-        
+        tmp += i
+        counter += 1
+        if counter == 8:
+            full_network_adress_bin_list.append(tmp)
+            counter = 0
+            tmp = ""
+    # print(full_network_adress_bin_list)
 
-
-
+    for i in full_network_adress_bin_list:
+        print(int(i, 2), end=".")
 
 apply_mask_to_ip(ip_list, mask_list)
