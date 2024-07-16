@@ -129,8 +129,17 @@
 
 
 host = "0000000001111011"
-
 print(host)
 
-res = host[::-1]
-print(res)
+revrs_host = host[::-1]
+print(revrs_host)
+
+counter_octet = 0
+tmp_list = ""
+host_list = []
+
+for i in revrs_host:
+    
+
+
+# print(host_list)
