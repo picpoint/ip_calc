@@ -138,8 +138,22 @@ counter_octet = 0
 tmp_list = ""
 host_list = []
 
+
 for i in revrs_host:
-    
+    counter_octet += 1
+    tmp_list += i
+    if len(tmp_list) == 8:
+        host_list.append(tmp_list)
+        tmp_list = ""
+    if len(tmp_list) < 8 and counter_octet == len(host):
+        host_list.append(tmp_list)
 
+print(host_list)
 
-# print(host_list)
+host_ip = []
+
+for i in host_list:
+    octet_ip = i[::-1]
+    # octet_ip = int(octet_ip, 2)
+    host_ip.insert(0, octet_ip)
+print(host_ip)
