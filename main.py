@@ -76,7 +76,7 @@ def apply_mask_to_ip(ip, mask):
 
     print()
     # print(f"IP в строке - {ip_bin_str}")
-    print(f"Длинна маски {counter_bit_mask}")
+    # print(f"Длинна маски {counter_bit_mask}")
     network_adress_part = ip_bin_str[:counter_bit_mask]
     # print(f"Network Adress - {network_adress_part}")
     host_adress_binary_part = ip_bin_str[counter_bit_mask:len(ip_bin_str)]
@@ -86,7 +86,7 @@ def apply_mask_to_ip(ip, mask):
     for i in range(0, 32 - len(network_adress_part)):
         full_network_adress_bin += "0"
 
-    # print(f"Full NA - {full_network_adress_bin}")
+    print(f"Full NA bin - {full_network_adress_bin}")
     full_network_adress_bin_list = []
     counter = 0
     tmp = ""
@@ -106,6 +106,7 @@ def apply_mask_to_ip(ip, mask):
 
     network_adress = network_adress[:-1]
     print(f"Адрес сети - {network_adress}")
+    print(f"Длинна маски - {counter_bit_mask}")
 
     # host_adress_binary_part
     # host = "0000000001111011"
@@ -147,6 +148,19 @@ def apply_mask_to_ip(ip, mask):
 
     hosts_in_network = 2 ** (len(host_adress_binary_part)) - 2
     print(f"Количество хостов в сети - {hosts_in_network}")
+
+
+    '''
+    вычисление broadcast адреса
+    '''
+    network_adress_part_bin = full_network_adress_bin[:counter_bit_mask]
+    print(f"Часть адреса сети - {network_adress_part_bin}")
+
+    for i in range(0, 32 - counter_bit_mask):
+        network_adress_part_bin += "1"
+
+    broadcast_full_adress_bin = network_adress_part_bin
+    print(broadcast_full_adress_bin)
 
 
 
