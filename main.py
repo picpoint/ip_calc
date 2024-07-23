@@ -54,37 +54,25 @@ mask_list = mask_to_binary(mask)
 Функция наложения маски на IP и вычисления
 '''
 def apply_mask_to_ip(ip, mask):
-    # print(ip)
-    # print(mask)
     counter_bit_mask = 0
     ip_bin_str = ""
-    network_ip = ""
-    host_ip = ""
 
     for oct_mask in mask:
         for bit_mask in oct_mask:
-            # print(bit_mask)
             if bit_mask == "1":
                 counter_bit_mask += 1
-    # print(counter_bit_mask)
 
     for oct_ip in ip:
         for bit_ip in oct_ip:
             ip_bin_str += bit_ip
 
     print()
-    # print(f"IP в строке - {ip_bin_str}")
-    # print(f"Длинна маски {counter_bit_mask}")
     network_adress_part = ip_bin_str[:counter_bit_mask]
-    # print(f"Network Adress - {network_adress_part}")
     host_adress_binary_part = ip_bin_str[counter_bit_mask:len(ip_bin_str)]
-    # print(f"Host adress - {host_adress_binary_part}")
 
     full_network_adress_bin = network_adress_part
     for i in range(0, 32 - len(network_adress_part)):
         full_network_adress_bin += "0"
-
-    # print(f"Full NA bin - {full_network_adress_bin}")
 
     full_network_adress_bin_list = []
     counter = 0
@@ -107,13 +95,7 @@ def apply_mask_to_ip(ip, mask):
     print(f"Адрес сети - {network_adress}")
     print(f"Длинна маски - {counter_bit_mask}")
 
-    # host_adress_binary_part
-    # host = "0000000001111011"
-    # print(host)
-
     revrs_host = host_adress_binary_part[::-1]
-    # print(revrs_host)
-
     counter_octet = 0
     tmp_list = ""
     host_list = []
@@ -126,8 +108,6 @@ def apply_mask_to_ip(ip, mask):
             tmp_list = ""
         if len(tmp_list) < 8 and counter_octet == len(host_adress_binary_part):
             host_list.append(tmp_list)
-
-    # print(host_list)
 
     host_ip_list = []
     host_ip_dec = ''
@@ -151,13 +131,11 @@ def apply_mask_to_ip(ip, mask):
     вычисление broadcast адреса
     '''
     network_adress_part_bin = full_network_adress_bin[:counter_bit_mask]
-    # print(f"Часть адреса сети - {network_adress_part_bin}")
 
     for i in range(0, 32 - counter_bit_mask):
         network_adress_part_bin += "1"
 
     broadcast_full_adress_bin = network_adress_part_bin
-    # print(broadcast_full_adress_bin)
 
     counter_broadcast_octet = 0
     broadcast_full_adress_list = []
@@ -172,7 +150,6 @@ def apply_mask_to_ip(ip, mask):
                 tmp = ""
                 counter_broadcast_octet = 0
 
-    # print(broadcast_full_adress_list)
     broadcast_adress = ""
 
     for i in broadcast_full_adress_list:
@@ -211,9 +188,6 @@ def apply_mask_to_ip(ip, mask):
     '''
     max_host_bin = broadcast_full_adress_bin
     max_host_bin = max_host_bin[:-1] + "0"
-    # print(max_host_bin)
-    # max_host_bin = "ABCDEFGHKLMNOPQRTSWXYZ1234567890"
-    # print(len(max_host_bin))
     max_host_bin_counter = 1
     max_host_bin_tmp = ""
     max_host_bin_list = []
@@ -227,8 +201,6 @@ def apply_mask_to_ip(ip, mask):
                 max_host_bin_list.append(max_host_bin_tmp)
                 max_host_bin_tmp = ""
                 max_host_bin_counter = 1
-
-    # print(max_host_bin_list)
 
     for i in max_host_bin_list:
         max_host = max_host + str(int(i, 2)) + "."
