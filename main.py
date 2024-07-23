@@ -6,8 +6,6 @@ mask = input("Введите маску: ")
 '''
 Функция перевода IP в двоичный формат
 '''
-
-
 def ip_to_binary(ip):
     ip_list_bin = []
     res_lst = []
@@ -33,8 +31,6 @@ def ip_to_binary(ip):
 '''
 Функция перевода маски в двоичный формат
 '''
-
-
 def mask_to_binary(mask):
     mask_list = mask.split(".")
     mask_list_binary = []
@@ -57,8 +53,6 @@ mask_list = mask_to_binary(mask)
 '''
 Функция наложения маски на IP и вычисления
 '''
-
-
 def apply_mask_to_ip(ip, mask):
     # print(ip)
     # print(mask)
@@ -188,7 +182,7 @@ def apply_mask_to_ip(ip, mask):
 
 
     '''
-    вычисление начального адреса хоста
+    Вычисление начального адреса хоста
     '''
     host_min_bin = full_network_adress_bin[:len(full_network_adress_bin) - 1]
     host_min_bin += "1"
@@ -244,4 +238,47 @@ def apply_mask_to_ip(ip, mask):
 
 
 
+'''
+Функция нахождения обратной маски
+'''
+def wildcard_calculate(mask_list):
+    tmp_mask_str = ""
+    tmp_wildcard_str = ""
+    for i in mask_list:
+        tmp_mask_str += i
+
+    for i in tmp_mask_str:
+        if i == "1":
+            tmp_wildcard_str += "0"
+        else:
+            tmp_wildcard_str += "1"
+
+    counter_octet = 1
+    tmp_str = ""
+    wildcard_bin_list = []
+    wildcard_str = ""
+    for i in tmp_wildcard_str:
+        if counter_octet < 9:
+            tmp_str += i
+            counter_octet += 1
+            if counter_octet == 9:
+                wildcard_bin_list.append(tmp_str)
+                tmp_str = ""
+                counter_octet = 1
+
+    for i in wildcard_bin_list:
+        wildcard_str += str(int(i, 2)) + "."
+
+    wildcard_str = wildcard_str[:-1]
+    print(f"Wildcard - {wildcard_str}")
+
+
+
+
+'''
+--------------------------
+ВЫЗОВЫ ФУНКЦИЙ
+--------------------------
+'''
 apply_mask_to_ip(ip_list, mask_list)
+wildcard_calculate(mask_list)
